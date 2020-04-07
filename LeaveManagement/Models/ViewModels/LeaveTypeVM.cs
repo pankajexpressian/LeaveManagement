@@ -1,19 +1,25 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
 namespace LeaveManagement.Models.ViewModels
 {
-    public class DetailsLeaveTypeVM
+    public class LeaveTypeVM
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime DateCreated { get; set; }
-    }
-
-    public class CreateLeaveTypeVM
-    {
+        
         [Required]
         public string Name { get; set; }
+        
+        [DisplayName("Date Created")]
+        public DateTime DateCreated { get; set; } 
+
     }
+
+    //public class CreateLeaveTypeVM
+    //{
+    //    [Required]
+    //    public string Name { get; set; }
+    //}
 }

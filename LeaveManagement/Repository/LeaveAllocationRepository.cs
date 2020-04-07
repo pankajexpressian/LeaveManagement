@@ -29,6 +29,11 @@ namespace LeaveManagement.Repository
             return _context.LeaveAllocations.Find(id);
         }
 
+        public bool IsExist(int id)
+        {
+            return GetById(id)!=null;
+        }
+
         public bool Remove(LeaveAllocation entity)
         {
             _context.LeaveAllocations.Remove(entity);

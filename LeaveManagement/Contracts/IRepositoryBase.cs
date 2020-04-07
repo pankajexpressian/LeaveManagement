@@ -12,6 +12,7 @@ namespace LeaveManagement.Contracts
         public bool Add(TEntity entity);
         public bool Update(int id, TEntity entity);
         public bool Remove(TEntity entity);
+        public bool IsExist(int id);
     }
 
    

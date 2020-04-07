@@ -27,11 +27,24 @@ namespace LeaveManagement.Repository
 
         public LeaveType GetById(int id)
         {
-            return _context.LeaveTypes.Find(id);
+            var entity = _context.LeaveTypes.Find(id);
+            if (entity!=null)
+            {
+                _context.Entry<LeaveType>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+            }
+            return entity;
         }
 
+        public bool IsExist(int id)
+        {
+            return GetById(id) != null;
+        }
         public bool Remove(LeaveType entity)
         {
+            if (_context.Entry<LeaveType>(entity).State!=Microsoft.EntityFrameworkCore.EntityState.Deleted)
+            {
+                _context.Entry<LeaveType>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            }
             _context.Remove(entity);
             return Save();
         }

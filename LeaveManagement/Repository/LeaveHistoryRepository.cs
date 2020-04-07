@@ -30,6 +30,10 @@ namespace LeaveManagement.Repository
             return _context.LeaveHistories.Find(id);
         }
 
+        public bool IsExist(int id)
+        {
+            return GetById(id) != null;
+        }
         public bool Remove(LeaveHistory entity)
         {
             _context.LeaveHistories.Remove(entity);
