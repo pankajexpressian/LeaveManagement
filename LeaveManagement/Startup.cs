@@ -12,6 +12,7 @@ using LeaveManagement.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using LeaveManagement.DependencyInjection;
 
 namespace LeaveManagement
 {
@@ -32,6 +33,11 @@ namespace LeaveManagement
                     Configuration.GetConnectionString("LeaveManagementDBConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //Inject reporsitory services here
+            RepositoryDependencyInjection.InjectRepositories(services);
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
