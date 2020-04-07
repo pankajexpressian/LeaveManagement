@@ -13,4 +13,6 @@ namespace LeaveManagement.Contracts
         public void Update(int id, TEntity entity);
         public void Remove(TEntity entity);
     }
+
+   
 }
