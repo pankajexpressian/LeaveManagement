@@ -9,9 +9,9 @@ namespace LeaveManagement.Contracts
     {
         public TEntity GetById(int id);
         public IEnumerable<TEntity> GetAll();
-        public void Add(TEntity entity);
-        public void Update(int id, TEntity entity);
-        public void Remove(TEntity entity);
+        public bool Add(TEntity entity);
+        public bool Update(int id, TEntity entity);
+        public bool Remove(TEntity entity);
     }
 
    

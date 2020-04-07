@@ -1,34 +1,51 @@
 ﻿using LeaveManagement.Contracts;
 using LeaveManagement.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LeaveManagement.Repository
 {
     public class LeaveHistoryRepository : ILeaveHistoryRepository
     {
-        public void Add(LeaveHistory entity)
+        private readonly ApplicationDbContext _context;
+
+        public LeaveHistoryRepository(ApplicationDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+        public bool Add(LeaveHistory entity)
+        {
+            _context.LeaveHistories.Add(entity);
+            return Save();
         }
 
         public IEnumerable<LeaveHistory> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.LeaveHistories.ToList();
+           
         }
 
         public LeaveHistory GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.LeaveHistories.Find(id);
         }
 
-        public void Remove(LeaveHistory entity)
+        public bool Remove(LeaveHistory entity)
         {
-            throw new System.NotImplementedException();
+            _context.LeaveHistories.Remove(entity);
+            return Save();
         }
 
-        public void Update(int id, LeaveHistory entity)
+        public bool Update(int id, LeaveHistory entity)
         {
-            throw new System.NotImplementedException();
+            _context.LeaveHistories.Update(entity);
+            return Save();
+        }
+
+        private bool Save()
+        {
+            var res = _context.SaveChanges();
+            return res > 0;
         }
     }
 }

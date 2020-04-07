@@ -1,34 +1,49 @@
 ﻿using LeaveManagement.Contracts;
 using LeaveManagement.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LeaveManagement.Repository
 {
     public class LeaveAllocationRepository : ILeaveAllocationRepository
     {
-        public void Add(LeaveAllocation entity)
+        private readonly ApplicationDbContext _context;
+
+        public LeaveAllocationRepository(ApplicationDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+        public bool Add(LeaveAllocation entity)
+        {
+            _context.LeaveAllocations.Add(entity);
+            return Save();
         }
 
         public IEnumerable<LeaveAllocation> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _context.LeaveAllocations.ToList();
         }
 
         public LeaveAllocation GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.LeaveAllocations.Find(id);
         }
 
-        public void Remove(LeaveAllocation entity)
+        public bool Remove(LeaveAllocation entity)
         {
-            throw new System.NotImplementedException();
+            _context.LeaveAllocations.Remove(entity);
+            return Save();
         }
 
-        public void Update(int id, LeaveAllocation entity)
+        public bool Update(int id, LeaveAllocation entity)
         {
-            throw new System.NotImplementedException();
+            _context.LeaveAllocations.Update(entity);
+            return Save();
+        }
+        private bool Save()
+        {
+            var res = _context.SaveChanges();
+            return res > 0;
         }
     }
 
