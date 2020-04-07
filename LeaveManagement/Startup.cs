@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using LeaveManagement.DependencyInjection;
+using LeaveManagement.Mappings;
+using AutoMapper;
 
 namespace LeaveManagement
 {
@@ -37,6 +39,7 @@ namespace LeaveManagement
             //Inject reporsitory services here
             RepositoryDependencyInjection.InjectRepositories(services);
 
+            services.AddAutoMapper(typeof(MyAutoMapper));
 
             services.AddControllersWithViews();
             services.AddRazorPages();

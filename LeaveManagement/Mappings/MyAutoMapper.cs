@@ -4,9 +4,9 @@ using LeaveManagement.Models.ViewModels;
 
 namespace LeaveManagement.Mappings
 {
-    public class Mapper : Profile
+    public class MyAutoMapper : Profile
     {
-        public Mapper()
+        public MyAutoMapper()
         {
             CreateMap<LeaveType, DetailsLeaveTypeVM>().ReverseMap();
             CreateMap<LeaveType, CreateLeaveTypeVM>().ReverseMap();
